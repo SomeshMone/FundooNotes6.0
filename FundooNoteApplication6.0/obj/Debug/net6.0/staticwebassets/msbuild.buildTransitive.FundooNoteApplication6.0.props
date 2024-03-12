@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\FundooNoteApplication6.0.props" />
+</Project>

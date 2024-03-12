@@ -1,0 +1,12 @@
+C:\Programs\FundooNoteApplication6.0\CommonLibrary\bin\Debug\net6.0\CommonLayer.deps.json
+C:\Programs\FundooNoteApplication6.0\CommonLibrary\bin\Debug\net6.0\CommonLayer.dll
+C:\Programs\FundooNoteApplication6.0\CommonLibrary\bin\Debug\net6.0\CommonLayer.pdb
+C:\Programs\FundooNoteApplication6.0\CommonLibrary\obj\Debug\net6.0\CommonLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Programs\FundooNoteApplication6.0\CommonLibrary\obj\Debug\net6.0\CommonLayer.AssemblyInfoInputs.cache
+C:\Programs\FundooNoteApplication6.0\CommonLibrary\obj\Debug\net6.0\CommonLayer.AssemblyInfo.cs
+C:\Programs\FundooNoteApplication6.0\CommonLibrary\obj\Debug\net6.0\CommonLayer.csproj.CoreCompileInputs.cache
+C:\Programs\FundooNoteApplication6.0\CommonLibrary\obj\Debug\net6.0\CommonLayer.sourcelink.json
+C:\Programs\FundooNoteApplication6.0\CommonLibrary\obj\Debug\net6.0\CommonLayer.dll
+C:\Programs\FundooNoteApplication6.0\CommonLibrary\obj\Debug\net6.0\refint\CommonLayer.dll
+C:\Programs\FundooNoteApplication6.0\CommonLibrary\obj\Debug\net6.0\CommonLayer.pdb
+C:\Programs\FundooNoteApplication6.0\CommonLibrary\obj\Debug\net6.0\ref\CommonLayer.dll
