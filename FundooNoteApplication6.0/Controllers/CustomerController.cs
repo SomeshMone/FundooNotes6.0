@@ -37,7 +37,7 @@ namespace FundooNoteApplication6._0.Controllers
         public IActionResult Count() 
         {
             var res=_cb.CustomersCount();
-            if (res != null)
+            if (res>=1)
             {
                 return Ok(new {success=true,message="No of Customers",data=res});
             }

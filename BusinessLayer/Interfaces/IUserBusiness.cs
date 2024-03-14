@@ -30,7 +30,11 @@ namespace BusinessLayer.Interfaces
 
         public bool ResetPassword(string Email, ResetPasswordModel resetPasswordModel);
 
-       
+
+        
+
+
+
 
     }
 }

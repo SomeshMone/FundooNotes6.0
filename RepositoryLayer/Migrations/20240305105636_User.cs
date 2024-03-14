@@ -24,11 +24,15 @@ namespace RepositoryLayer.Migrations
                     table.PrimaryKey("PK_UsersTable1", x => x.UserId);
                 });
         }
+            
+    
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "UsersTable1");
+
+            
         }
     }
 }

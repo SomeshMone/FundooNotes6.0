@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "KV+iYlfrcTWHkm8r0mCsoO7Ba8a3vsjx6UeU2tamLO9bBj3TfsY7tWchdfz6nBUfn1WnD6w0nkpn03pfQDJAnA==",
+  "dgSpecHash": "fFTn5Uk0a9tQiD0mK87JTPufnH0tz2cVxFxqemvjvTc+DGhvNLVz8KzNj/CQt71MQXnduTbbajEVow2A4oxq7A==",
   "success": true,
   "projectFilePath": "C:\\Programs\\FundooNoteApplication6.0\\RepositoryLayer\\RepositoryLayer.csproj",
   "expectedPackageFiles": [
@@ -47,9 +47,9 @@
     "C:\\Users\\somesh\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512",
     "C:\\Users\\somesh\\.nuget\\packages\\system.text.encoding.codepages\\4.7.0\\system.text.encoding.codepages.4.7.0.nupkg.sha512",
     "C:\\Users\\somesh\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512",
-    "C:\\Users\\somesh\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.27\\microsoft.windowsdesktop.app.ref.6.0.27.nupkg.sha512",
-    "C:\\Users\\somesh\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.27\\microsoft.netcore.app.ref.6.0.27.nupkg.sha512",
-    "C:\\Users\\somesh\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.27\\microsoft.aspnetcore.app.ref.6.0.27.nupkg.sha512"
+    "C:\\Users\\somesh\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.28\\microsoft.windowsdesktop.app.ref.6.0.28.nupkg.sha512",
+    "C:\\Users\\somesh\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.28\\microsoft.netcore.app.ref.6.0.28.nupkg.sha512",
+    "C:\\Users\\somesh\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.28\\microsoft.aspnetcore.app.ref.6.0.28.nupkg.sha512"
   ],
   "logs": []
 }

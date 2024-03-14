@@ -55,8 +55,8 @@ namespace FundooNoteApplication6._0.Controllers
             //int userid = (int)login;
             if (login != null)
             {
-                //HttpContext.Session.SetInt32("UserId",userid);
-                return Ok(login);
+                
+                return Ok(new {success=true,message="User logged successfully"});
             }
             return BadRequest("Invalid Credentials");
 
@@ -172,12 +172,13 @@ namespace FundooNoteApplication6._0.Controllers
 
         }
 
-
+        [Authorize]
         [HttpPut("ResetPassword")]
-        public IActionResult ResetPassword(string Email,ResetPasswordModel reset)
+        public IActionResult ResetPassword(ResetPasswordModel reset)
         {
+            string Email = User.Claims.FirstOrDefault(x => x.Type == "Email").Value;
             var res = _business.ResetPassword(Email, reset);
-            if (res != null)
+            if (res)
             {
                 return Ok(new { success = true, message = "Password Reset is done" });
 
