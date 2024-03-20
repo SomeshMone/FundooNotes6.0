@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Interfaces;
 using CommonLayer.Model;
+using Microsoft.AspNetCore.Http;
 using RepositoryLayer.Entity;
 using RepositoryLayer.Interfaces;
 using System;
@@ -64,5 +65,25 @@ namespace BusinessLayer.Services
         {
             return _repository.GetNotesByUserId(userid);
         }
+        public NotesEntity AddReminder(long userid, long noteid, DateTime reminder)
+        {
+            return _repository.AddReminder(userid, noteid, reminder);
+
+        }
+        public NotesEntity AddImage(long userId, long noteId, IFormFile Image)
+        {
+            return _repository.AddImage(userId, noteId, Image);
+        }
+
+        public int GetNofNotes(long userid)
+        {
+            return _repository.GetNofNotes(userid);
+        }
+
+        public NotesEntity GetNoteTitle(long userid, string title, string desc)
+        {
+            return _repository.GetNoteTitle(userid, title,desc);
+        }
+
     }
 }

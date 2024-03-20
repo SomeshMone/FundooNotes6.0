@@ -29,10 +29,9 @@ namespace BusinessLayer.Interfaces
         public ForgotPasswordModel ForgotPassword(string Email);
 
         public bool ResetPassword(string Email, ResetPasswordModel resetPasswordModel);
-
+        public TokenModel LoginMethod(UserLoginModel model);
 
         
-
 
 
 

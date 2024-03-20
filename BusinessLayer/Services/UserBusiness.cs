@@ -77,8 +77,12 @@ namespace BusinessLayer.Services
         {
             return iuserr.ResetPassword(Email, resetPasswordModel);
         }
+        public TokenModel LoginMethod(UserLoginModel model)
+        {
+            return iuserr.LoginMethod(model);
+        }
 
-       
+
 
 
     }

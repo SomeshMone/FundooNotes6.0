@@ -27,6 +27,9 @@ namespace RepositoryLayer.Interfaces
 
         public bool ResetPassword(string Email, ResetPasswordModel resetPasswordModel);
 
-        
+        public TokenModel LoginMethod(UserLoginModel model);
+
+
+
     }
 }

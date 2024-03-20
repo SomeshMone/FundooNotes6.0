@@ -1,4 +1,5 @@
 ﻿using CommonLayer.Model;
+using Microsoft.AspNetCore.Http;
 using RepositoryLayer.Entity;
 using System;
 using System.Collections.Generic;
@@ -26,5 +27,15 @@ namespace BusinessLayer.Interfaces
         public NotesEntity GetNoteById(long userid, long noteid);
 
         public IEnumerable<NotesEntity> GetNotesByUserId(long userid);
+        public NotesEntity AddReminder(long userid, long noteid, DateTime reminder);
+        public NotesEntity AddImage(long userId, long noteId, IFormFile Image);
+
+        public int GetNofNotes(long userid);
+
+        public NotesEntity GetNoteTitle(long userid, string title, string desc);
+
+
+
+
     }
 }

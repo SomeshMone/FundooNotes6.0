@@ -22,6 +22,33 @@ namespace RepositoryLayer.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("RepositoryLayer.Entity.Collaborator", b =>
+                {
+                    b.Property<long>("CollaboratorsId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("CollaboratorsId"), 1L, 1);
+
+                    b.Property<string>("CollaboratorsEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("NoteId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("CollaboratorsId");
+
+                    b.HasIndex("NoteId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("collaborators");
+                });
+
             modelBuilder.Entity("RepositoryLayer.Entity.CustomerEntity", b =>
                 {
                     b.Property<long>("customer_id")
@@ -97,6 +124,10 @@ namespace RepositoryLayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsArchive")
                         .HasColumnType("bit");
 
@@ -119,12 +150,9 @@ namespace RepositoryLayer.Migrations
                     b.Property<long>("UserId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("UsersTable1UserId")
-                        .HasColumnType("bigint");
-
                     b.HasKey("NoteId");
 
-                    b.HasIndex("UsersTable1UserId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("UserNotes");
                 });
@@ -158,6 +186,25 @@ namespace RepositoryLayer.Migrations
                     b.ToTable("UsersTable1");
                 });
 
+            modelBuilder.Entity("RepositoryLayer.Entity.Collaborator", b =>
+                {
+                    b.HasOne("RepositoryLayer.Entity.NotesEntity", "UserNotes")
+                        .WithMany()
+                        .HasForeignKey("NoteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RepositoryLayer.Entity.UserEntity", "UsersTable1")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("UserNotes");
+
+                    b.Navigation("UsersTable1");
+                });
+
             modelBuilder.Entity("RepositoryLayer.Entity.LabelEntity", b =>
                 {
                     b.HasOne("RepositoryLayer.Entity.NotesEntity", "UserNotes")
@@ -181,7 +228,7 @@ namespace RepositoryLayer.Migrations
                 {
                     b.HasOne("RepositoryLayer.Entity.UserEntity", "UsersTable1")
                         .WithMany()
-                        .HasForeignKey("UsersTable1UserId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

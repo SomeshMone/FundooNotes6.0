@@ -89,3 +89,7 @@ C:\Programs\FundooNoteApplication6.0\FundooNoteApplication6.0\obj\Debug\net6.0\r
 C:\Programs\FundooNoteApplication6.0\FundooNoteApplication6.0\obj\Debug\net6.0\FundooNoteApplication6.0.pdb
 C:\Programs\FundooNoteApplication6.0\FundooNoteApplication6.0\obj\Debug\net6.0\FundooNoteApplication6.0.genruntimeconfig.cache
 C:\Programs\FundooNoteApplication6.0\FundooNoteApplication6.0\obj\Debug\net6.0\ref\FundooNoteApplication6.0.dll
+C:\Programs\FundooNoteApplication6.0\FundooNoteApplication6.0\bin\Debug\net6.0\CloudinaryDotNet.dll
+C:\Programs\FundooNoteApplication6.0\FundooNoteApplication6.0\bin\Debug\net6.0\NLog.dll
+C:\Programs\FundooNoteApplication6.0\FundooNoteApplication6.0\bin\Debug\net6.0\NLog.Extensions.Logging.dll
+C:\Programs\FundooNoteApplication6.0\FundooNoteApplication6.0\bin\Debug\net6.0\NLog.Web.AspNetCore.dll

@@ -12,6 +12,12 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+// add loggers
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+builder.Logging.AddDebug();
+
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -28,9 +34,13 @@ builder.Services.AddScoped<INotesRepository,NotesRepository>();
 builder.Services.AddScoped<ILabelBusiness,LabelBusiness>();
 builder.Services.AddScoped<ILabelRepository,LabelRepository>();
 
+builder.Services.AddScoped<ICollaboratorBusiness,CollaboratorBusiness>();
+builder.Services.AddScoped<ICollaboratorRepository,CollaboratorRepository>();
+
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserBusiness, UserBusiness>();
 builder.Services.AddDbContext<FundooContext>(opts => opts.UseSqlServer(builder.Configuration["ConnectionString:FundooDBp"]));
+builder.Services.AddStackExchangeRedisCache(options => { options.Configuration = builder.Configuration["RedisCacheUrl"]; });
 
 
 
@@ -82,6 +92,9 @@ builder.Services.AddAuthentication(x =>
     };
 });
 
+
+
+builder.Services.AddStackExchangeRedisCache(options => { options.Configuration = builder.Configuration["RedisCacheUrl"]; });
 builder.Services.AddSession(options =>
 {
     // Set a short timeout for easy testing.
@@ -117,7 +130,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseSession();
+app.UseSession(); //for session purpose
 
 app.MapControllers();
 

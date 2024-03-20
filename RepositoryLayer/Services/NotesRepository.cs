@@ -7,9 +7,13 @@ using RepositoryLayer.Migrations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
+using CloudinaryDotNet;
 using static System.Net.Mime.MediaTypeNames;
+using CloudinaryDotNet.Actions;
+using Microsoft.AspNetCore.Http;
 
 namespace RepositoryLayer.Services
 {
@@ -125,6 +129,18 @@ namespace RepositoryLayer.Services
                 return null;
             }
         }
+        public IEnumerable<NotesEntity> GetAllNotesByCache()
+        {
+            var notes = fundooContext.UserNotes.ToList();
+            if (notes.Count == 0 || notes == null)
+            {
+                return null;
+            }
+            else
+            {
+                return notes.ToList();
+            }
+        }
 
         public IEnumerable<NotesEntity> GetNotesByUserId(long userid)
         {
@@ -210,6 +226,8 @@ namespace RepositoryLayer.Services
             }
             
         }
+
+
         public NotesEntity ToggleTrash(long userid,long noteid)
         {
             var trash = fundooContext.UserNotes.FirstOrDefault(x => x.NoteId == noteid && x.UserId == userid);
@@ -252,6 +270,29 @@ namespace RepositoryLayer.Services
             }
             
         }
+        public NotesEntity AddReminder(long userid,long noteid,DateTime reminder)
+        {
+            var note = fundooContext.UserNotes.FirstOrDefault(x => x.NoteId == noteid && x.UserId == userid);
+            if (note == null)
+            {
+                return null;
+            }
+            else
+            {
+                if (reminder > DateTime.Now)
+                {
+                    note.Remainder = reminder;
+                    fundooContext.Entry(note).State = EntityState.Modified;
+                    fundooContext.SaveChanges();
+                    return note;
+
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
         public NotesEntity AddColor(long userid,long noteid,string color)
         {
             var note = fundooContext.UserNotes.FirstOrDefault(x => x.NoteId == noteid && x.UserId == userid);
@@ -267,6 +308,78 @@ namespace RepositoryLayer.Services
                 return null;
             }
         }
+        public int GetNofNotes(long userid)
+        {
+            var notes=fundooContext.UserNotes.Where(x=>x.UserId == userid).Count();
+            if (notes != 0)
+            {
+                return notes;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        public NotesEntity GetNoteTitle(long userid,string title,string desc) 
+        {
+            var notes = fundooContext.UserNotes.FirstOrDefault(x => x.UserId == userid && x.Title.Contains(title)&&x.Description.Contains(desc));
+                if (notes != null)
+                {
+                    return notes;
+                }
+                else
+                {
+                    return null;
+                }
+            
+        }
+        public NotesEntity AddImage(long userId, long noteId, IFormFile Image)
+        {
+            try
+            {
+
+
+                var note = fundooContext.UserNotes.Where(x => x.UserId == userId && x.NoteId == noteId).FirstOrDefault();
+
+                if (note == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    Account account = new Account(
+                      "dt5g4ga4t",
+                      "734587615747541",
+                      "zmVE40OjSubH4kPblEKlpyIvWf4");
+
+                    Cloudinary cloudinary = new Cloudinary(account);
+
+
+                    var uploadParameters = new ImageUploadParams()
+                    {
+                        File = new FileDescription(Image.FileName, Image.OpenReadStream()),
+                        PublicId=note.Title
+                    };
+                    var uploadResult = cloudinary.Upload(uploadParameters);
+                    string ImagePath = uploadResult.Url.ToString();
+
+
+                    note.Image = ImagePath;
+                    fundooContext.Entry(note).State = EntityState.Modified;
+                    fundooContext.SaveChanges();
+
+                    return note;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        
+        
 
     }
 }

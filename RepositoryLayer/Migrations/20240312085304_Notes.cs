@@ -17,6 +17,7 @@ namespace RepositoryLayer.Migrations
             Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
             Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
             Color = table.Column<string>(type: "nvarchar(max)", nullable: false),
+            Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
             Remainder = table.Column<DateTime>(type: "datetime2", nullable: false),
             IsArchive = table.Column<bool>(type: "bit", nullable: false),
             IsPinned = table.Column<bool>(type: "bit", nullable: false),
@@ -40,7 +41,11 @@ namespace RepositoryLayer.Migrations
                 name: "IX_UserNotes_UserId",
                 table: "UserNotes",
                 column: "UserId");
+
+            
         }
+        
+
 
     
 

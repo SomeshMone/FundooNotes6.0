@@ -12,6 +12,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
 namespace RepositoryLayer.Services
 {
@@ -19,11 +20,13 @@ namespace RepositoryLayer.Services
     {
         private readonly FundooContext fundooContext;
         private readonly IConfiguration _config;
+        private readonly ILogger<UserRepository> _logger;
 
-        public UserRepository(FundooContext fundooContext, IConfiguration _config)
+        public UserRepository(FundooContext fundooContext, IConfiguration _config, ILogger<UserRepository> logger)
         {
             this.fundooContext = fundooContext;
             this._config = _config;
+            this._logger= logger;
 
         }
 
@@ -100,6 +103,7 @@ namespace RepositoryLayer.Services
 
         public string UserLogin(UserLoginModel user)
         {
+            _logger.LogInformation("ENTER IN TO THE Userlogin  METHOD in User_Repository with ", user);
             var userLogin = fundooContext.UsersTable1.FirstOrDefault(x => x.Email == user.Email);
 
             // Check if userLogin is null
@@ -230,6 +234,28 @@ namespace RepositoryLayer.Services
                 return false;
             }
 
+        }
+        public TokenModel LoginMethod(UserLoginModel model)
+        {
+            var user=fundooContext.UsersTable1.FirstOrDefault(s=>s.Email == model.Email);
+            if (user != null)
+            {
+                //model.Password= EncodePassword(user.Password);
+                TokenModel tk = new TokenModel();
+                if(model.Password== DecodePassword(user.Password) && model.Email == user.Email)
+                {
+                    tk.Email = user.Email;
+                    tk.First_name = user.FirstName;
+                    tk.Last_Name = user.LastName;
+                    tk.Token = GenerateToken(user.UserId, user.Email);
+                    tk.Id = user.UserId;
+                    return tk;
+
+                }
+                return null;
+
+            }
+            return null;
         }
 
     }

@@ -16,10 +16,12 @@ namespace FundooNoteApplication6._0.Controllers
     {
         private readonly IUserBusiness _business;
         private readonly IBus bus;
-        public UserController(IUserBusiness business,IBus bus)
+        private readonly ILogger<UserController> logger;
+        public UserController(IUserBusiness business,IBus bus,ILogger<UserController> logger)
         {
             this._business = business;
             this.bus = bus;
+            this.logger = logger;
         }
        
         [HttpPost]
@@ -66,14 +68,27 @@ namespace FundooNoteApplication6._0.Controllers
         [Route("GetAllUsers")]
         public IActionResult GetAllUsers()
         {
-            var getAllUsers= _business.GetAllUsers();
-            if (getAllUsers != null)
+            try
             {
-                return Ok(getAllUsers);
+                var getAllUsers = _business.GetAllUsers();
+                //throw new Exception("Error occured");
+
+                if (getAllUsers != null)
+                {
+                    return Ok(getAllUsers);
+                }
+                else
+                {
+                    
+                    return BadRequest("Not found");
+                }
+                
             }
-            else
+            catch(Exception ex)
             {
-                return BadRequest("Users Not Found...");
+                //logger.LogError(ex.ToString());
+                return BadRequest("Notfound");
+
             }
             
 
@@ -189,7 +204,20 @@ namespace FundooNoteApplication6._0.Controllers
             }
         }
 
+        [HttpPost("LoginMethod")]
+        public IActionResult LoginMethod(UserLoginModel model)
+        {
+            var login = _business.LoginMethod(model);
+            if(login!=null)
+            {
+                return Ok(new { success = true, message = "User Login Successful", Data = login });
+            }
+            else
+            {
+                return BadRequest(new { success = false, message = "User Login Unsuccessful" });
+            }
 
+        }
 
     }
  }
